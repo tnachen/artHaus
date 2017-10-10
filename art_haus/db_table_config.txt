@@ -1,0 +1,47 @@
+db table config
+
+
+#user
+create table user(id int(11) auto_increment primary key not null, username varchar(50) not null, first_name varchar(50) not null, last_name varchar(50) not null, email_address varchar(320) not null, date_registered datetime(6) not null, unique key(username, email_address));
+
+#user_profile
+create table user_profile(id int(11) auto_increment primary key not null, user_id int(11) not null, username varchar(50) not null, first_name varchar(50) not null, last_name varchar(50) not null, email_address varchar(320) not null, dob datetime(6), location varchar(100), gender enum('m', 'f', 'o'), date_registered datetime(6) not null, notescheck datetime(6) not null, avatar varchar(255) not null, ip varchar(255) not null, lastlogin datetime(6) not null, skill1 varchar(30) not null, skill2 varchar(30), skill3 varchar(30), unique key(username, email_address, user_id) );
+
+#user_sec
+create table user_sec(id int(11) auto_increment primary key not null, username varchar(50) not null, password varchar(128) not null, sec_q varchar(100), sec_ans varchar(100), unique key(username));
+
+#status
+create table status(id int(11) auto_increment primary key not null, user_id int(11) not null, status_time datetime(6) not null, status_content text not null);
+
+#messages
+create table messages(id int(11) auto_increment primary key not null, message_time datetime(6) not null, sender_id int(11) not null, recipient_id int(11) not null, subject varchar(100), contents text);
+
+#mates
+create table mates(id int(11) auto_increment primary key not null, user1 int(11) not null, user2 int(11) not null, datemade datetime(6) not null, accepted enum('0','1') not null);
+
+#photos
+create table photos(id int(11) auto_increment primary key not null, user_id varchar(30) not null, gallery varchar(30) not null, filename varchar(255) not null, description varchar(255) not null, uploaddate datetime(6) not null);
+
+#notifications
+create table notifications(id int(11) auto_increment primary key not null,username varchar (30) not null, initiator varchar(30) not null, app varchar(255) not null, note varchar(255), did_read enum ('0', '1') not null default '0', date_time datetime(6) not null);
+
+*#forum
+create table forum(id int(11) auto_increment primary key not null)
+
+#blocked users
+create table blocked_users(id int(11) auto_increment primary key not null, blocker varchar(30) not null, blockee varchar(30) not null, blockdate datetime(6) not null);
+
+*#artist
+create table artist(id int(11) auto_increment primary key not null)
+
+#artSKL
+create table skl(msg_id int(11) unsigned auto_increment primary key not null, user_id int(11) not null, topic_id int(11) not null, subject varchar(100) not null, msg_txt longtext not null, date datetime(6) not null, parent_id int(11) not null);
+
+#topics
+create table topics(topic_id int(11) not null auto_increment primary key, topic varchar(50) not null);
+
+deleting all tables with user dependencies
+
+drop table user;
+drop table user_sec;
+drop table user_profile;
