@@ -1,0 +1,2 @@
+lightning-flash @ git+https://github.com/PytorchLightning/lightning-flash.git@master
+pandas
